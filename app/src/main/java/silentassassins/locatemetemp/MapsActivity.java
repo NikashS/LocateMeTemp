@@ -4,7 +4,7 @@ import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
-import android.widget.Toast;
+//import android.widget.Toast;
 
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -104,7 +104,7 @@ public class MapsActivity extends FragmentActivity implements LocationProvider.L
             currentLatitude1 = Double.parseDouble(longlat1[1]);
             if (currentLatitude != currentLatitude1 || currentLongitude != currentLongitude1) {
                 ParseUser.getCurrentUser().put("changed", "true");
-                Toast.makeText(this, "Changed", Toast.LENGTH_LONG).show();
+                //Toast.makeText(this, "Changed", Toast.LENGTH_LONG).show();
             }
         }
         ParseUser.getCurrentUser().put("Location", Double.toString(currentLatitude) + "," + Double.toString(currentLongitude));
@@ -118,7 +118,7 @@ public class MapsActivity extends FragmentActivity implements LocationProvider.L
             mMap.addMarker(new MarkerOptions().position(new LatLng(currentLatitude, currentLongitude)).title( users.getUsername()+"'s Location"));
         }
         catch (ParseException e){
-            Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+            //Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
 
         }
          currentLatitude = location.getLatitude();

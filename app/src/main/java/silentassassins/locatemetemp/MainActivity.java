@@ -1,13 +1,8 @@
 package silentassassins.locatemetemp;
 
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -17,10 +12,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
-
-import silentassassins.locatemetemp.FriendsFragment;
 
 public class MainActivity
         extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, HowToFragment.OnFragmentInteractionListener, AboutFragment.OnFragmentInteractionListener, FriendsFragment.OnFragmentInteractionListener {
@@ -32,15 +23,6 @@ public class MainActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -49,6 +31,8 @@ public class MainActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        getSupportActionBar().setTitle("LocateMe");
     }
 
     @Override
@@ -91,8 +75,13 @@ public class MainActivity
 
         if (id == R.id.nav_camera) {
             // Handle the camera action
-            TextView helloworld = (TextView) findViewById(R.id.helloworld);
-            helloworld.setText("");
+            TextView textView = (TextView) findViewById(R.id.textView);
+            textView.setText("");
+            TextView textView4 = (TextView) findViewById(R.id.textView4);
+            textView4.setText("");
+            TextView textView5 = (TextView) findViewById(R.id.textView5);
+            textView5.setText("");
+            getSupportActionBar().setTitle("How To");
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.main_fragment, new HowToFragment());
             ft.addToBackStack(null);
@@ -100,16 +89,26 @@ public class MainActivity
 
         } else if (id == R.id.nav_gallery) {
 
-            TextView helloworld = (TextView) findViewById(R.id.helloworld);
-            helloworld.setText("");
+            TextView textView = (TextView) findViewById(R.id.textView);
+            textView.setText("");
+            TextView textView4 = (TextView) findViewById(R.id.textView4);
+            textView4.setText("");
+            TextView textView5 = (TextView) findViewById(R.id.textView5);
+            textView5.setText("");
+            getSupportActionBar().setTitle("About");
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.main_fragment, new AboutFragment());
             ft.addToBackStack(null);
             ft.commit();
 
         } else if (id == R.id.nav_share) {
-            TextView helloworld = (TextView) findViewById(R.id.helloworld);
-            helloworld.setText("");
+            TextView textView = (TextView) findViewById(R.id.textView);
+            textView.setText("");
+            TextView textView4 = (TextView) findViewById(R.id.textView4);
+            textView4.setText("");
+            TextView textView5 = (TextView) findViewById(R.id.textView5);
+            textView5.setText("");
+            getSupportActionBar().setTitle("Friends");
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.main_fragment, new FriendsFragment());
             ft.addToBackStack(null);

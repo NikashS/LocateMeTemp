@@ -51,7 +51,7 @@ public class LocationProvider implements
         // Create the LocationRequest object
         mLocationRequest = LocationRequest.create()
                 .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
-                .setInterval(2 * 1000)        // 10 seconds, in milliseconds
+                .setInterval(5 * 1000)        // 10 seconds, in milliseconds
                 .setFastestInterval(1 * 1000); // 1 second, in milliseconds
 
         mContext = context;
@@ -65,6 +65,7 @@ public class LocationProvider implements
         if (mGoogleApiClient.isConnected()) {
             LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
             mGoogleApiClient.disconnect();
+
         }
     }
 
@@ -79,18 +80,24 @@ public class LocationProvider implements
         } else {
             mLocationCallback.handleNewLocation(location);
         }
+        startLocationUpdates();
 
     }
 
     @Override
     public void onConnectionSuspended(int i) {
-
+        stopLocationUpdates();
     }
 
     protected void startLocationUpdates() {
         LocationServices.FusedLocationApi.requestLocationUpdates(
                 mGoogleApiClient, mLocationRequest, this);
     }
+    protected void stopLocationUpdates() {
+        LocationServices.FusedLocationApi.removeLocationUpdates(
+                mGoogleApiClient, this);
+    }
+
     @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {
         /*

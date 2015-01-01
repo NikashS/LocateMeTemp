@@ -84,7 +84,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
                     startActivity(d);
                 }
                 else {
-                    Toast.makeText(getApplicationContext(), "Invalid", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(), "Invalid", Toast.LENGTH_SHORT).show();
                 }
 
             }

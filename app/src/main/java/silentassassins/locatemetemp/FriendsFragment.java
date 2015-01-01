@@ -15,7 +15,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.parse.Parse;
 import com.parse.ParseException;
@@ -204,7 +203,7 @@ public class FriendsFragment extends Fragment {
                     classesList[z] = f;
                 }
                 catch (ParseException e){
-                    Toast.makeText(getContext(),e.getMessage(), Toast.LENGTH_LONG).show();
+                    //Toast.makeText(getContext(),e.getMessage(), //Toast.LENGTH_LONG).show();
                 }
 
             }
@@ -246,7 +245,7 @@ public class FriendsFragment extends Fragment {
                             }
                             currentss.saveInBackground();
                         } catch (ParseException e) {
-                            Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+                            //Toast.makeText(getContext(), e.getMessage(), //Toast.LENGTH_LONG).show();
                         }
                     }
                 })
