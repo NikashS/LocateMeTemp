@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
@@ -85,6 +86,7 @@ public class FriendsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         View rootView = inflater.inflate(R.layout.recyclerview_activity, container, false);
 
 
@@ -116,8 +118,10 @@ public class FriendsFragment extends Fragment {
                         @Override
                         public void onItemClick(View view, int position) {
                             // TODO Handle item click to create (example is with the first physics class)
-                            Intent myIntent = new Intent(getContext(), MainActivity.class);
-                            myIntent.putExtra("objectId", friends.get(position).getObjectId());
+                            Intent myIntent = new Intent(getContext(), MapsActivity.class);
+                            Log.e("Failure",friends.get(position).getObjectId());
+                            ParseUser.getCurrentUser().put("track", friends.get(position).getObjectId());
+                            ParseUser.getCurrentUser().saveInBackground();
                             getContext().startActivity(myIntent);
 
 
@@ -175,23 +179,28 @@ public class FriendsFragment extends Fragment {
     private void initializeData() {
 
         ParseUser current = ParseUser.getCurrentUser();
-
         if(current!= null){
             String[] classes = new String[1];
-
-            if(current.getString("Friends").contains(",")){
-                classes = current.getString("Friends").split(",");
+            String test = current.getString("Friends");
+            if(test==null){
+                return;
+            }
+            else if(test.contains(",")){
+                classes = test.split(",");
             }
             else {
-                classes[0] = current.getString("Friends");
+                classes[0] = test;
             }
-            ParseObject[] classesList= new ParseObject[classes.length];
+            ParseUser[] classesList= new ParseUser[classes.length];
             int z = 0;
-
+            Log.e("Failure","helpme1");
             for(z=0;z<classes.length;z++){
-                ParseQuery<ParseObject> query = ParseQuery.getQuery("User");
+                ParseQuery<ParseUser> query = ParseUser.getQuery();
+                Log.e("Failure","helpme2");
                 try{
-                    ParseObject f = query.get(classes[z]);
+                    Log.e("Failure","helpme3");
+                    ParseUser f = query.get(classes[z]);
+                    Log.e("Failure","helpme4");
                     classesList[z] = f;
                 }
                 catch (ParseException e){
@@ -199,9 +208,13 @@ public class FriendsFragment extends Fragment {
                 }
 
             }
+            Log.e("Failure","helpme");
             friends = new ArrayList<>();
-            for(ParseObject g: classesList) {
-                friends.add(new Friends(g.getString("Username"),R.drawable.logo,g.getObjectId()));
+            for(ParseUser g: classesList) {
+                if(g!=null) {
+                    friends.add(new Friends(g.getUsername(), R.drawable.logo, g.getObjectId()));
+                }
+
             }
         }
     }
@@ -219,17 +232,17 @@ public class FriendsFragment extends Fragment {
         alertDialogBuilder.setCancelable(false)
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        ParseQuery query = new ParseQuery("Classes");
+                        ParseQuery<ParseUser> query = ParseUser.getQuery();
                         try {
-                            ParseObject d = query.get(editText.getText().toString());
+                            ParseUser d = query.get(editText.getText().toString());
                             ParseUser currentss = ParseUser.getCurrentUser();
-                            String bas = currentss.getString("Classes");
+                            String bas = currentss.getString("Friends");
                             Log.e("Classes", currentss.getUsername());
                             if(bas==null ||bas.length()<4){
-                                currentss.put("Classes",bas);
+                                currentss.put("Friends",d.getObjectId());
                             }
                             else{
-                                currentss.put("Classes", bas + "," + d.getObjectId());
+                                currentss.put("Friends", bas + "," + d.getObjectId());
                             }
                             currentss.saveInBackground();
                         } catch (ParseException e) {

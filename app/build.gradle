@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "silentassassins.locatemetemp"
-        minSdkVersion 21
+        minSdkVersion 19
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
@@ -21,13 +21,22 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
+<<<<<<< HEAD
     testCompile 'junit:junit:4.12'
+=======
+>>>>>>> origin/master
 
     compile 'com.android.support:appcompat-v7:23.0.1'
+    compile 'com.google.android.gms:play-services:7.8.0'
     compile 'com.android.support:support-v4:23.0.1'
     compile 'com.android.support:design:23.0.1'
     compile 'com.parse.bolts:bolts-android:1.+'
     compile 'com.parse:parse-android:1.+'
     compile 'com.android.support:cardview-v7:23.0.1'
     compile 'com.android.support:recyclerview-v7:23.0.1'
+<<<<<<< HEAD
+=======
+    compile 'com.google.android.gms:play-services:7.8.0'
+
+>>>>>>> origin/master
 }
