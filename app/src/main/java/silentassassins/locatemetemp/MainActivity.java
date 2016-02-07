@@ -20,7 +20,7 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
-import layout.FriendsFragment;
+import silentassassins.locatemetemp.FriendsFragment;
 
 public class MainActivity
         extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, HowToFragment.OnFragmentInteractionListener, AboutFragment.OnFragmentInteractionListener, FriendsFragment.OnFragmentInteractionListener {

@@ -1,20 +1,55 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="layout.FriendsFragment">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="16dp"
+    tools:context="silentassassins.locatemetemp.AboutFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Button"
-        android:id="@+id/button6"
-        android:layout_gravity="center_horizontal|bottom" />
+        android:id="@+id/cv"
+        >
 
-</FrameLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            >
+
+            <ImageView
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:id="@+id/person_photo"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginRight="16dp"
+                android:src="@drawable/ic_menu_camera"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/person_name"
+                android:layout_toRightOf="@+id/person_photo"
+                android:layout_alignParentTop="true"
+                android:textSize="20sp"
+                android:text="Prathik Naidu"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/person_teacher"
+                android:layout_toRightOf="@+id/person_photo"
+                android:layout_below="@+id/person_name"
+                android:text="Cool guy"
+                />
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+
+</LinearLayout>
