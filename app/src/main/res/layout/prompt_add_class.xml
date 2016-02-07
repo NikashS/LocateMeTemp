@@ -10,14 +10,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Enter Class Code"
+        android:text="Enter Friend Username"
         android:id="@+id/textViewadd" />
 
     <EditText
         android:id="@+id/editTextadd"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter text here.."
+        android:hint="Enter Username here.."
         android:padding="10dp" />
 
 </LinearLayout>

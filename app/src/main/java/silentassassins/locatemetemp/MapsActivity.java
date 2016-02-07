@@ -85,7 +85,7 @@ public class MapsActivity extends FragmentActivity implements LocationProvider.L
      * This should only be called once and when we are sure that {@link #mMap} is not null.
      */
     private void setUpMap() {
-        mMap.addMarker(new MarkerOptions().position(new LatLng(0, 0)).title("Marker"));
+        //mMap.addMarker(new MarkerOptions().position(new LatLng(0, 0)).title("Marker"));
     }
 
     public void handleNewLocation(Location location) {
@@ -102,25 +102,29 @@ public class MapsActivity extends FragmentActivity implements LocationProvider.L
             longlat1 = longlat.split(",");
             currentLongitude1 = Double.parseDouble(longlat1[0]);
             currentLatitude1 = Double.parseDouble(longlat1[1]);
-            if (currentLatitude != currentLatitude1 && currentLongitude != currentLongitude1) {
+            if (currentLatitude != currentLatitude1 || currentLongitude != currentLongitude1) {
+                ParseUser.getCurrentUser().put("changed", "true");
                 Toast.makeText(this, "Changed", Toast.LENGTH_LONG).show();
             }
         }
         ParseUser.getCurrentUser().put("Location", Double.toString(currentLatitude) + "," + Double.toString(currentLongitude));
-        ParseQuery<ParseUser> queryUser = ParseQuery.getQuery("Users");
+        ParseQuery<ParseUser> queryUser = ParseUser.getQuery();
         try{
-            longlat1 = queryUser.get(ParseUser.getCurrentUser().getString("track")).getString("Location").split(",");
-            currentLongitude = Double.parseDouble(longlat1[0]);
-            currentLatitude = Double.parseDouble(longlat1[1]);
+            ParseUser users = queryUser.get(ParseUser.getCurrentUser().getString("track"));
+            longlat1 = users.getString("Location").split(",");
+            currentLatitude = Double.parseDouble(longlat1[0]);
+            currentLongitude = Double.parseDouble(longlat1[1]);
             latLng = new LatLng(currentLatitude, currentLongitude);
-            mMap.addMarker(new MarkerOptions().position(new LatLng(currentLatitude, currentLongitude)).title("Friend's Location"));
+            mMap.addMarker(new MarkerOptions().position(new LatLng(currentLatitude, currentLongitude)).title( users.getUsername()+"'s Location"));
         }
         catch (ParseException e){
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
-            latLng = new LatLng(currentLatitude, currentLongitude);
-            mMap.addMarker(new MarkerOptions().position(new LatLng(currentLatitude, currentLongitude)).title("Current Location"));
-        }
 
+        }
+         currentLatitude = location.getLatitude();
+         currentLongitude = location.getLongitude();
+        latLng = new LatLng(currentLatitude, currentLongitude);
+        mMap.addMarker(new MarkerOptions().position(new LatLng(currentLatitude, currentLongitude)).title("Current Location"));
         MarkerOptions options = new MarkerOptions()
                 .position(latLng)
                 .title("I am here!");

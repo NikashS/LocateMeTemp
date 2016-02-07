@@ -16,9 +16,6 @@ import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 
-/**
- * Created by benjakuben on 12/17/14.
- */
 public class LocationProvider implements
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener,
@@ -40,6 +37,7 @@ public class LocationProvider implements
     private Context mContext;
     private GoogleApiClient mGoogleApiClient;
     private LocationRequest mLocationRequest;
+    private Boolean mRequestingLocationUpdates;
 
     public LocationProvider(Context context, LocationCallback callback) {
         mGoogleApiClient = new GoogleApiClient.Builder(context)
@@ -53,7 +51,7 @@ public class LocationProvider implements
         // Create the LocationRequest object
         mLocationRequest = LocationRequest.create()
                 .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
-                .setInterval(10 * 1000)        // 10 seconds, in milliseconds
+                .setInterval(2 * 1000)        // 10 seconds, in milliseconds
                 .setFastestInterval(1 * 1000); // 1 second, in milliseconds
 
         mContext = context;
@@ -75,12 +73,13 @@ public class LocationProvider implements
         Log.i(TAG, "Location services connected.");
 
         Location location = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+
         if (location == null) {
             LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
-        }
-        else {
+        } else {
             mLocationCallback.handleNewLocation(location);
         }
+
     }
 
     @Override
@@ -88,6 +87,10 @@ public class LocationProvider implements
 
     }
 
+    protected void startLocationUpdates() {
+        LocationServices.FusedLocationApi.requestLocationUpdates(
+                mGoogleApiClient, mLocationRequest, this);
+    }
     @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {
         /*
@@ -120,6 +123,7 @@ public class LocationProvider implements
 
     @Override
     public void onLocationChanged(Location location) {
+
         mLocationCallback.handleNewLocation(location);
     }
 }
