@@ -19,6 +19,11 @@
                 android:icon="@drawable/ic_menu_share"
                 android:title="Friends" />
         </menu>
+             <item
+                android:id="@+id/camera"
+                android:icon="@drawable/ic_menu_camera"
+                android:title="Camera" />
+
     </item>
 
 </menu>

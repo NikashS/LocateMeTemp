@@ -115,6 +115,14 @@ public class MainActivity
             ft.addToBackStack(null);
             ft.commit();
         }
+        else if (id == R.id.camera) {
+            TextView helloworld = (TextView) findViewById(R.id.helloworld);
+            helloworld.setText("");
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.main_fragment, new Camera());
+            ft.addToBackStack(null);
+            ft.commit();
+        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

@@ -1,4 +1,4 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -6,10 +6,23 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New Button"
-        android:id="@+id/button4"
-        android:layout_gravity="left|bottom" />
-</FrameLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:weightSum="1">
+
+        <TextView
+            android:layout_width="286dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:id="@+id/textView3"
+            android:layout_gravity="center_horizontal"
+            android:textAlignment="center"
+            android:layout_marginTop="70dp"
+            android:layout_weight="0.27"
+            android:text="The first step to locating your friends is actually adding them to a list of contacts. Click on the friend tab below the connect section. This will open up a screen with an option to add a friend. After adding the username of the friend, click on the menu bar once again and open the friends tab. This time there should be a contact for your friend. If you click on this icon, a map will open up and will allow you to begin finding your friend. In regards to the photo component, there is also a tab under connect that is labeled camera." />
+    </LinearLayout>
+
+</RelativeLayout>
