@@ -25,8 +25,4 @@
             android:text="The first step to locating your friends is actually adding them to a list of contacts. Click on the friend tab below the connect section. This will open up a screen with an option to add a friend. After adding the username of the friend, click on the menu bar once again and open the friends tab. This time there should be a contact for your friend. If you click on this icon, a map will open up and will allow you to begin finding your friend. In regards to the photo component, there is also a tab under connect that is labeled camera." />
     </LinearLayout>
 
-<<<<<<< Updated upstream
 </RelativeLayout>
-=======
-</RelativeLayout>
->>>>>>> Stashed changes

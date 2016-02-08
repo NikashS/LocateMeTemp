@@ -115,8 +115,12 @@ public class MainActivity
             ft.commit();
         }
         else if (id == R.id.camera) {
-            TextView helloworld = (TextView) findViewById(R.id.helloworld);
-            helloworld.setText("");
+            TextView textView = (TextView) findViewById(R.id.textView);
+            textView.setText("");
+            TextView textView4 = (TextView) findViewById(R.id.textView4);
+            textView4.setText("");
+            TextView textView5 = (TextView) findViewById(R.id.textView5);
+            textView5.setText("");
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.main_fragment, new Camera());
             ft.addToBackStack(null);

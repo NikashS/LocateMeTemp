@@ -22,14 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-<<<<<<< HEAD
         android:text="LocateMe"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
-=======
-        android:text="Locate Me"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
-
-
->>>>>>> origin/master
 </LinearLayout>

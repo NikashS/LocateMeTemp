@@ -35,8 +35,5 @@
                 android:layout_marginTop="70dp" />
         </LinearLayout>
     </RelativeLayout>
-<<<<<<< Updated upstream
 </RelativeLayout>
-=======
-</RelativeLayout>
->>>>>>> Stashed changes
+
